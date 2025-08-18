@@ -1,0 +1,73 @@
+<nav
+  class="navbar navbar-expand-md bg-white border-bottom sticky-top shadow-sm"
+>
+  <div class="container-fluid">
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold" href="/listings">
+      <i class="fa-regular fa-compass"></i>
+    </a>
+
+    <!-- Toggler -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible Content -->
+    <div
+      class="collapse navbar-collapse bg-white p-3 p-md-0 shadow-sm rounded"
+      id="navbarNav"
+    >
+      <!-- Left Side Links -->
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item size">
+          <a class="nav-link red" href="/listings">airbnb</a>
+        </li>
+      </ul>
+
+      <!-- Middle Tabs -->
+      <ul class="nav nav-tabs mx-auto mt-3 mt-md-0">
+        <li class="nav-item">
+          <a class="nav-link active fw-semibold" href="#">
+            <i class="bi bi-house-door-fill me-1"></i> Homes
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="bi bi-balloon me-1"></i> Experiences
+            <span class="badge bg-primary rounded-pill small ms-1">NEW</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="bi bi-bell-fill me-1"></i> Services
+            <span class="badge bg-primary rounded-pill small ms-1">NEW</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Right Side Links -->
+      <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/listings/new">Airbnb your home</a>
+        </li>
+        <% if(!currUser) { %>
+        <li class="nav-item">
+          <a class="nav-link fw-bold" href="/signup">Sign up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-bold" href="/login">Log in</a>
+        </li>
+        <% } %> <% if(currUser) { %>
+        <li class="nav-item">
+          <a class="nav-link fw-bold" href="/logout">Log out</a>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</nav>
