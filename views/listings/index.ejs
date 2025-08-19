@@ -45,20 +45,20 @@
     flex-wrap: nowrap;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    padding: 0.5rem 0.25rem; /* tightened padding */
-    gap: 0.5rem;
+    padding: 0.5rem 0.5rem;
+    gap: 0.75rem;
+    margin-right: 0; /* Remove extra space */
   }
 
   #filters::-webkit-scrollbar {
-    display: none;
+    display: none; /* Hide scrollbar for cleaner UI */
   }
 
   .filter {
     text-align: center;
     flex: 0 0 auto;
     opacity: 0.7;
-    min-width: 50px; /* smaller size */
-    max-width: 70px; /* avoids extra space */
+    min-width: 60px;
   }
 
   .filter:hover {
@@ -67,8 +67,8 @@
   }
 
   .filter p {
-    font-size: 0.7rem; /* smaller text */
-    margin-top: 0.2rem;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
   }
 
   .tax-info {
@@ -78,14 +78,13 @@
   .tax-toggle {
     border: 1px solid black;
     border-radius: 1rem;
-    height: 2.5rem;
-    padding: 0.25rem 0.5rem;
+    height: 3rem;
+    padding: 0.25rem 0.75rem;
     margin-left: auto;
     flex: 0 0 auto;
     display: flex;
     align-items: center;
     white-space: nowrap;
-    font-size: 0.75rem;
   }
 
   /* Search bar responsive fixes */
@@ -104,7 +103,6 @@
       border: none !important;
       width: 100%;
       text-align: left;
-      font-size: 0.85rem; /* smaller text for mobile */
     }
 
     .search-bar button {
@@ -117,7 +115,7 @@
 <div id="filters" class="px-2">
   <div class="filter">
     <div><i class="fa-solid fa-fire fa-lg"></i></div>
-    <p>Trend</p>
+    <p>Trending</p>
   </div>
   <div class="filter">
     <div><i class="fa-solid fa-bed fa-lg"></i></div>
@@ -125,23 +123,23 @@
   </div>
   <div class="filter">
     <div><i class="fa-solid fa-mountain-city fa-lg"></i></div>
-    <p>Cities</p>
+    <p>Iconic Cities</p>
   </div>
   <div class="filter">
     <div><i class="fa-solid fa-mountain fa-lg"></i></div>
-    <p>Mount</p>
+    <p>Mountains</p>
   </div>
   <div class="filter">
     <div><i class="fa-brands fa-fort-awesome fa-lg"></i></div>
-    <p>Castle</p>
+    <p>Castles</p>
   </div>
   <div class="filter">
     <div><i class="fa-solid fa-person-swimming fa-lg"></i></div>
-    <p>Pools</p>
+    <p>Amazing Pools</p>
   </div>
   <div class="filter">
     <div><i class="fa-solid fa-campground fa-lg"></i></div>
-    <p>Camp</p>
+    <p>Camping</p>
   </div>
   <div class="filter">
     <div><i class="fa-solid fa-cow fa-lg"></i></div>
@@ -162,7 +160,7 @@
         id="switchCheckDefault"
       />
       <label class="form-check-label small" for="switchCheckDefault">
-        Show total
+        Display total after taxes
       </label>
     </div>
   </div>
