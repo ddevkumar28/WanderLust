@@ -1,135 +1,213 @@
-<% layout("/layouts/boilerplate") %>
+<% layout("layouts/boilerplate") %>
 
-<body>
-  <div class="row mt-3">
-    <div class="col-8 offset-2">
-      <h3><%= listing.title %></h3>
+<!-- Search Bar -->
+<div class="container mt-3">
+  <div
+    class="search-bar bg-white rounded-pill shadow-sm d-flex flex-wrap align-items-stretch"
+  >
+    <!-- Where -->
+    <div class="flex-fill p-2 border-end text-truncate">
+      <small class="fw-bold d-block">Where</small>
+      <span class="text-muted small">Search destinations</span>
     </div>
 
-    <div class="card col-8 offset-2 show-card listing-show p-3">
-      <img
-        src="<%= listing.image.url %>"
-        class="card-img-top rounded mb-3"
-        alt="<%= listing.title %>"
-      />
-
-      <div class="card-body">
-        <h5 class="card-title"><%= listing.location %></h5>
-        <p class="card-text"><%= listing.description %></p>
-        <p class="card-text fw-bold">$<%= listing.price %> / night</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Filters + Search Bar -->
-  <div class="container mt-4">
-    <!-- Filters Row -->
-    <div class="d-flex flex-nowrap overflow-auto mb-3 gap-2">
-      <button class="btn btn-light border rounded-pill px-3 py-1 flex-shrink-0">
-        <i class="bi bi-houses me-1"></i> Houses
-      </button>
-      <button class="btn btn-light border rounded-pill px-3 py-1 flex-shrink-0">
-        <i class="bi bi-tree me-1"></i> Nature
-      </button>
-      <button class="btn btn-light border rounded-pill px-3 py-1 flex-shrink-0">
-        <i class="bi bi-water me-1"></i> Beach
-      </button>
-      <button class="btn btn-light border rounded-pill px-3 py-1 flex-shrink-0">
-        <i class="bi bi-building me-1"></i> Apartments
-      </button>
+    <!-- Check in -->
+    <div class="flex-fill p-2 border-end text-truncate">
+      <small class="fw-bold d-block">Check in</small>
+      <span class="text-muted small">Add dates</span>
     </div>
 
-    <!-- Search Bar -->
+    <!-- Check out -->
+    <div class="flex-fill p-2 border-end text-truncate">
+      <small class="fw-bold d-block">Check out</small>
+      <span class="text-muted small">Add dates</span>
+    </div>
+
+    <!-- Who -->
     <div
-      class="search-bar bg-white rounded-pill shadow-sm d-flex flex-wrap align-items-center"
+      class="flex-fill p-2 d-flex justify-content-between align-items-center"
     >
-      <!-- Where -->
-      <div class="search-item px-2 border-end">
-        <small class="fw-bold d-block">Where</small>
-        <span class="text-muted small">Search</span>
+      <div class="text-truncate">
+        <small class="fw-bold d-block">Who</small>
+        <span class="text-muted small">Add guests</span>
       </div>
-
-      <!-- Check in -->
-      <div class="search-item px-2 border-end">
-        <small class="fw-bold d-block">Check in</small>
-        <span class="text-muted small">Add</span>
-      </div>
-
-      <!-- Check out -->
-      <div class="search-item px-2 border-end">
-        <small class="fw-bold d-block">Check out</small>
-        <span class="text-muted small">Add</span>
-      </div>
-
-      <!-- Who -->
-      <div
-        class="search-item px-2 d-flex justify-content-between align-items-center"
-      >
-        <div>
-          <small class="fw-bold d-block">Who</small>
-          <span class="text-muted small">Guests</span>
-        </div>
-        <button class="btn btn-danger rounded-circle ms-2">
-          <i class="bi bi-search text-white"></i>
-        </button>
-      </div>
+      <button class="btn btn-danger rounded-circle ms-2 flex-shrink-0">
+        <i class="bi bi-search text-white"></i>
+      </button>
     </div>
   </div>
+</div>
 
-  <style>
-    /* General search bar */
+<style>
+  /* Filters responsiveness */
+  #filters {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.5rem 1rem;
+    gap: 1rem;
+  }
+
+  .filter {
+    text-align: center;
+    flex: 0 0 auto;
+    opacity: 0.7;
+  }
+
+  .filter:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  .filter p {
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+  }
+
+  .tax-info {
+    display: none;
+  }
+
+  .tax-toggle {
+    border: 1px solid black;
+    border-radius: 1rem;
+    height: 3.2rem;
+    padding: 0.5rem 1rem;
+    margin-left: auto;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Mobile: search bar stack vertically */
+  @media (max-width: 768px) {
     .search-bar {
-      font-size: 0.85rem;
-      overflow: hidden; /* removes right-side extra space */
+      border-radius: 1rem !important;
+      flex-direction: column !important;
     }
 
-    .search-item {
-      flex: 1 1 auto;
-      min-width: 70px;
-      text-align: center;
+    .search-bar > div {
+      border-right: none !important;
+      border-bottom: 1px solid #ddd;
+      width: 100%;
     }
 
-    /* Responsive tweaks */
-    @media (max-width: 576px) {
-      .search-bar {
-        border-radius: 1rem !important;
-        padding: 0.3rem 0.4rem;
-      }
+    .search-bar > div:last-child {
+      border-bottom: none;
+    }
+  }
+</style>
 
-      .search-item {
-        flex: 1 1 25%; /* four equal parts */
-        padding: 0.2rem !important;
-      }
+<!-- Filters Bar -->
+<div id="filters" class="px-2">
+  <div class="filter">
+    <div><i class="fa-solid fa-fire fa-lg"></i></div>
+    <p>Trending</p>
+  </div>
+  <div class="filter">
+    <div><i class="fa-solid fa-bed fa-lg"></i></div>
+    <p>Rooms</p>
+  </div>
+  <div class="filter">
+    <div><i class="fa-solid fa-mountain-city fa-lg"></i></div>
+    <p>Iconic Cities</p>
+  </div>
+  <div class="filter">
+    <div><i class="fa-solid fa-mountain fa-lg"></i></div>
+    <p>Mountains</p>
+  </div>
+  <div class="filter">
+    <div><i class="fa-brands fa-fort-awesome fa-lg"></i></div>
+    <p>Castles</p>
+  </div>
+  <div class="filter">
+    <div><i class="fa-solid fa-person-swimming fa-lg"></i></div>
+    <p>Amazing Pools</p>
+  </div>
+  <div class="filter">
+    <div><i class="fa-solid fa-campground fa-lg"></i></div>
+    <p>Camping</p>
+  </div>
+  <div class="filter">
+    <div><i class="fa-solid fa-cow fa-lg"></i></div>
+    <p>Farms</p>
+  </div>
+  <div class="filter">
+    <div><i class="fa-solid fa-snowflake fa-lg"></i></div>
+    <p>Arctic</p>
+  </div>
 
-      .search-item small,
-      .search-item span {
-        font-size: 0.65rem;
-      }
+  <!-- Taxes Toggle -->
+  <div class="tax-toggle">
+    <div class="form-check-reverse form-switch">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        role="switch"
+        id="switchCheckDefault"
+      />
+      <label class="form-check-label small" for="switchCheckDefault">
+        Display total after taxes
+      </label>
+    </div>
+  </div>
+</div>
 
-      .search-bar .btn {
-        width: 28px;
-        height: 28px;
-        padding: 0;
-      }
+<!-- Listings Grid -->
+<div class="container my-4">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+    <% for (let listing of allListings) { %>
+    <div class="col">
+      <a
+        href="/listings/<%= listing._id %>"
+        class="text-decoration-none text-dark"
+      >
+        <div class="card border-0 shadow-sm h-100 position-relative">
+          <!-- Image -->
+          <img
+            src="<%= listing.image.url %>"
+            class="card-img-top rounded-3"
+            alt="listing_image"
+            style="height: 220px; object-fit: cover"
+          />
 
-      .search-bar i {
-        font-size: 0.7rem;
-      }
+          <!-- Wishlist Heart -->
+          <button
+            class="btn btn-light position-absolute top-0 end-0 m-2 rounded-circle shadow-sm"
+          >
+            <i class="bi bi-heart"></i>
+          </button>
 
-      /* Filters buttons scrollable */
-      .d-flex.flex-nowrap {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-      }
+          <!-- Card Body -->
+          <div class="card-body">
+            <h6 class="fw-bold mb-1"><%= listing.title %></h6>
+            <p class="text-muted small mb-1">
+              <%= listing.location || "Unknown location" %>
+            </p>
+            <p class="fw-semibold mb-0">
+              ₹<%= listing.price.toLocaleString("en-IN") %>
+              <span class="text-muted">for 1 night</span>
+              <i class="tax-info"> &nbsp; &nbsp;+18% GST</i>
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <% } %>
+  </div>
+</div>
 
-      .d-flex.flex-nowrap::-webkit-scrollbar {
-        display: none;
-      }
-
-      .btn {
-        font-size: 0.7rem;
-        padding: 0.25rem 0.6rem;
+<script>
+  let taxSwitch = document.getElementById("switchCheckDefault");
+  taxSwitch.addEventListener("click", () => {
+    let taxInfo = document.getElementsByClassName("tax-info");
+    for (info of taxInfo) {
+      if (info.style.display != "inline") {
+        info.style.display = "inline";
+      } else {
+        info.style.display = "none";
       }
     }
-  </style>
-</body>
+  });
+</script>
