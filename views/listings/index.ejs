@@ -3,26 +3,26 @@
 <!-- Search Bar -->
 <div class="container mt-3">
   <div
-    class="search-bar bg-white rounded-pill shadow-sm d-flex flex-wrap align-items-center"
+    class="search-bar bg-white rounded-pill shadow-sm d-flex flex-wrap align-items-center justify-content-between"
   >
     <!-- Where -->
-    <div class="col-6 col-md px-3 border-end">
+    <div class="flex-fill px-3 border-end search-item">
       <small class="fw-bold d-block">Where</small>
       <span class="text-muted">Search destinations</span>
     </div>
     <!-- Check in -->
-    <div class="col-6 col-md px-3 border-end">
+    <div class="flex-fill px-3 border-end search-item">
       <small class="fw-bold d-block">Check in</small>
       <span class="text-muted">Add dates</span>
     </div>
     <!-- Check out -->
-    <div class="col-6 col-md px-3 border-end">
+    <div class="flex-fill px-3 border-end search-item">
       <small class="fw-bold d-block">Check out</small>
       <span class="text-muted">Add dates</span>
     </div>
     <!-- Who -->
     <div
-      class="col-6 col-md px-3 d-flex justify-content-between align-items-center"
+      class="flex-fill px-3 d-flex justify-content-between align-items-center search-item"
     >
       <div>
         <small class="fw-bold d-block">Who</small>
@@ -36,28 +36,32 @@
 </div>
 
 <style>
-  /* Fix overflow issue */
+  /* ✅ Search bar responsiveness */
   .search-bar {
-    width: 100%;
-    margin: 0 auto;
+    overflow: hidden;
+  }
+  .search-item {
+    min-width: 120px; /* prevent collapsing */
+    font-size: 0.9rem;
+  }
+  @media (max-width: 768px) {
+    .search-bar {
+      border-radius: 1rem !important;
+      flex-direction: column;
+      align-items: stretch;
+      text-align: left;
+    }
+    .search-item {
+      border: none !important;
+      padding: 0.5rem 1rem !important;
+      font-size: 0.85rem;
+    }
+    .search-item button {
+      margin-left: auto;
+    }
   }
 
-  /* Text resize for smaller screens */
-  @media (max-width: 576px) {
-    .search-bar small {
-      font-size: 0.7rem;
-    }
-    .search-bar span {
-      font-size: 0.65rem;
-    }
-    .search-bar .btn {
-      width: 32px;
-      height: 32px;
-      padding: 0;
-    }
-  }
-
-  /* Filters responsiveness */
+  /* ✅ Filters responsiveness */
   #filters {
     display: flex;
     flex-wrap: nowrap;
@@ -142,9 +146,9 @@
         role="switch"
         id="switchCheckDefault"
       />
-      <label class="form-check-label small" for="switchCheckDefault">
-        Display total after taxes
-      </label>
+      <label class="form-check-label small" for="switchCheckDefault"
+        >Display total after taxes</label
+      >
     </div>
   </div>
 </div>
@@ -166,14 +170,12 @@
             alt="listing_image"
             style="height: 220px; object-fit: cover"
           />
-
           <!-- Wishlist Heart -->
           <button
             class="btn btn-light position-absolute top-0 end-0 m-2 rounded-circle shadow-sm"
           >
             <i class="bi bi-heart"></i>
           </button>
-
           <!-- Card Body -->
           <div class="card-body">
             <h6 class="fw-bold mb-1"><%= listing.title %></h6>
@@ -183,7 +185,7 @@
             <p class="fw-semibold mb-0">
               ₹<%= listing.price.toLocaleString("en-IN") %>
               <span class="text-muted">for 1 night</span>
-              <i class="tax-info">&nbsp; &nbsp;+18% GST</i>
+              <i class="tax-info">&nbsp;&nbsp;+18% GST</i>
             </p>
           </div>
         </div>
